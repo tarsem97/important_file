@@ -1,0 +1,112 @@
+{% extends 'administrator/inner-partials.html' %}
+{% load static %}
+{% block body %}
+<style>
+.m-login__account {
+    float: left;
+    width: 94%;
+    text-align: right;
+    margin: 19px 0;
+}
+.m-login__head {
+    text-align: center;
+}
+.pagination1 {
+    float: right;
+    width: 68%;
+    text-align: center;
+}
+span.step-links a {
+    background-color: #840ad9;
+    background-image: none;
+    border-color: #7c0acd;
+    color: #fff;
+    padding: 5px 9px 8px;
+    margin: 0 6px;
+    font-weight: 500;
+}
+span.current {
+    color: #000;
+    font-weight: 500;
+}
+a.delete_btn {
+    background: rgb(220, 52, 49);
+    color: #fff;
+    padding: 5px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 13px;
+     text-decoration: none;
+}
+[class*=" la-"], [class^=la-] {
+    font-size: 2rem;
+    text-decoration: none;
+}
+.creat {
+    float: right;
+    width: 22%;
+    position: absolute;
+    right: 0;
+    top: 93px;
+}
+
+</style>
+<div class="m-portlet m-portlet--mobile datatable_section">
+
+<div class="creat">
+<a href="{{ url }}create-response-message/" id="k_test" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">
+	create Response message
+</a>
+</div>
+<div class="m-portlet__body">
+<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+<div class="row align-items-center">
+        <div class="col-xl-8 order-2 order-xl-1">
+            <div class="form-group m-form__group row align-items-center">
+                <div class="col-md-4">
+                    <div class="m-input-icon m-input-icon--left">
+                        <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch"> <span class="m-input-icon__icon m-input-icon__icon--left">
+                                <span>
+                                    <i class="la la-search"></i>
+                                </span> </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="m-login__head">
+	<h3 class="m-login__title mb-5">
+		View manage response
+	</h3>
+</div>
+</div>
+<table class="m-datatable" id="html_table" width="100%">
+    <thead>
+      <tr>
+		<th title="Field #1">title</th>
+		<th title="Field #2">message</th>
+		<th title="Field #4">image</th>
+        <th title="Field #6">EDIT</th>
+		<th title="Field #7">Remove</th>
+	</tr>
+    </thead>
+    <tbody>
+      {% for data in view_data  %}
+		<tr>
+			<td>{{data.title}}</td>
+			<td>{{data.message}}</td>
+			<td><img src="{{data.image.url}}" alt="..." class="img-thumbnail"></td>
+			<td><a href="{{ url }}update-response-message/{{ data.id }}"><img src="https://img.icons8.com/dusk/64/000000/edit.png" style="height:30px"></td>
+			<td><a href="#" id="delete_response_message" responseId="{{data.id}}"  class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a></td>
+		</tr>
+
+	  {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+
+      <!--end of Pagination-->
+{% endblock %}
